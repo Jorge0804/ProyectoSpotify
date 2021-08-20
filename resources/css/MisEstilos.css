@@ -1,0 +1,11 @@
+#fondo_login, #fondo_registro, #fondo_forgot{
+    background-image: url('../Images/fondo_login.png');
+}
+
+#btn_login{
+    background-color: #1db954;
+}
+
+#fondo_card{
+    background-color: blue;
+}
