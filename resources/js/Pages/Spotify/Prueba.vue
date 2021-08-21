@@ -4,16 +4,18 @@
             home
         </template>
         <template v-slot:texto>
-            Hola
+            {{cancion.nombre}}
         </template>
     </OpcionSpotify>
 </template>
 
 <script>
-console.log(cancion);
 import OpcionSpotify from './OpcionSide';
 
 export default{
+    props:[
+        'cancion'
+    ],
     components:{
         OpcionSpotify
     }

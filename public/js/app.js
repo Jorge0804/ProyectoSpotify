@@ -20931,9 +20931,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _OpcionSide__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OpcionSide */ "./resources/js/Pages/Spotify/OpcionSide.vue");
-console.log(cancion);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['cancion'],
   components: {
     OpcionSpotify: _OpcionSide__WEBPACK_IMPORTED_MODULE_0__.default
   }
@@ -25812,8 +25812,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" home ");
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Hola ");
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_OpcionSpotify = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("OpcionSpotify");
 
@@ -25822,7 +25820,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_1];
     }),
     texto: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_2];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.cancion.nombre), 1
+      /* TEXT */
+      )];
     }),
     _: 1
     /* STABLE */
