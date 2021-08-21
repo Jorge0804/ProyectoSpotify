@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\canciones;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/prueba', function () {
-    return Inertia::render('App');
+    $cancion = canciones::with('imagen')->first();
+    return Inertia::render('Prueba', compact('cancion'));
+})->name('prueba');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/panel', function () {
+    return Inertia::render('Grid');
 })->name('prueba');

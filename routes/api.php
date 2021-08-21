@@ -24,7 +24,7 @@ Route::get('/users', function(){
 });
 
 Route::get('/canciones', function(){
-    return \App\Models\canciones::with('imagen')->get();
+    return \App\Models\canciones::with('imagen')->first();
 });
 
 Route::get('/playlist', function(){
