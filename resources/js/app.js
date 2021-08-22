@@ -17,7 +17,7 @@ createInertiaApp({
     },
 });
 
-createInertiaApp({
+/*createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => require(`./Pages/Spotify/${name}.vue`),
     setup({ el, app, props, plugin }) {
@@ -26,6 +26,6 @@ createInertiaApp({
             .mixin({ methods: { route } })
             .mount(el);
     },
-});
+});*/
 
 InertiaProgress.init({ color: '#4B5563' });

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import OpcionSpotify from './OpcionSide';
+import OpcionSpotify from '../../MisComponentes/SideBar/OpcionSide';
 
 export default {
     components:{

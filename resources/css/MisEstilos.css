@@ -9,3 +9,12 @@
 #fondo_card{
     background-color: blue;
 }
+
+html {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+}
+
+.material-icons{
+    color: white;
+}

@@ -13,10 +13,10 @@ class playlist extends Model
     protected $table = 'playlist';
 
     function imagen(){
-        return $this->hasOne(imagenes::class, 'id_imagen');
+        return $this->hasOne(imagenes::class, 'id_imagen', 'id_imagen');
     }
 
     function canciones(){
-        return $this->belongsToMany(canciones::class, 'canciones_playlist', 'id_cancion', 'id_playlist');
+        return $this->belongsToMany(canciones::class, 'canciones_playlist', 'id_playlist', 'id_cancion')->with('imagen');
     }
 }

@@ -30,3 +30,7 @@ Route::get('/canciones', function(){
 Route::get('/playlist', function(){
     return \App\Models\playlist::with('imagen')->with('canciones')->get();
 });
+
+Route::get('/categorias', function(){
+    return \App\Models\categorias::with('playlists')->get();
+});

@@ -3,13 +3,17 @@
         <div class="flex" style="height: 88vh;">
             <!-- Sidebar -->
             <div class="w-56 bg-black h-full flex-none">
-
+                <SideBar :playlists="playlists"/>
             </div>
             <!-- Main -->
-            <div class="w-full h-full relative overflow-y-scroll" style="background-color: green">
+            <div class="w-full h-full relative overflow-y-scroll" style="background-color: #121212">
                 <!-- Header -->
-                <div class="w-full sticky top-0 py-4 px-6 flex items-center justify-between bg-dark z-50" style="background-color: blue">
-
+                <Header :usuario="usuario"/>
+                <!-- Categorías -->
+                <div class="px-6 py-3">
+                    <Categorias v-for="categoria in categorias" :categoria="categoria">
+                        <template v-slot:usuario>{{usuario.name}}</template>
+                    </Categorias>
                 </div>
             </div>
         </div>
@@ -19,3 +23,22 @@
         </div>
     </div>
 </template>
+
+<script>
+    import SideBar from '../../MisComponentes/SideBar/SideBar';
+    import Header from "../../MisComponentes/Header/Header";
+    import Categorias from '../../MisComponentes/Base/Categorias/Categoria';
+
+    export default {
+        props:[
+            'playlists',
+            'usuario',
+            'categorias'
+        ],
+        components: {
+            SideBar,
+            Header,
+            Categorias
+        }
+    }
+</script>
