@@ -1,6 +1,6 @@
 <template>
     <button @click="showDropdown=!showDropdown" class="bg-light rounded-full py-1 px-2 flex items-center" style="background-color: #282828">
-        <img src="../../../../Images/perfil.gif" class="rounded-full h-6 w-6 mr-2" />
+        <img :src="usuario.profile_photo_url" class="rounded-full h-6 w-6 mr-2" />
         <p class="text-white font-semibold truncate mr-3">{{usuario.name}}</p>
         <i v-if="!showDropdown" class="material-icons text-white">arrow_drop_down</i>
         <i v-else class="material-icons text-white">arrow_drop_up</i>

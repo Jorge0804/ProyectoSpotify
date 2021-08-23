@@ -4,6 +4,11 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\canciones;
+use App\Models\playlist;
+use Illuminate\Support\Facades\Auth;
+use App\Models\categorias;
+use App\Models\User;
+use App\Models\likes;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +32,9 @@ use App\Models\canciones;
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
-    $playlists = \App\Models\playlist::all();
-    $usuario = \Illuminate\Support\Facades\Auth::user();
-    $categorias = \App\Models\categorias::with('playlists')->get();
+    $playlists = playlist::all();
+    $usuario = Auth::user();
+    $categorias = categorias::with('playlists')->get();
     $canLogin = Route::has('login');
     $canRegister = Route::has('register');
     return Inertia::render('Spotify',compact('playlists', 'usuario', 'categorias', 'canLogin', 'canRegister'));
@@ -40,15 +45,29 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/Grid', function () {
-    $playlists = \App\Models\playlist::all();
-    $usuario = \Illuminate\Support\Facades\Auth::user();
-    $categorias = \App\Models\categorias::with('playlists')->get();
+    $playlists = playlist::all();
+    $usuario = Auth::user();
+    $categorias = categorias::with('playlists')->get();
     return Inertia::render('Grid',  compact('playlists', 'usuario', 'categorias'));
 })->name('grid');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/SpotifyLikes/{id_playlist}', function ($id_playlist) {
-    $playlist = \App\Models\playlist::with('canciones')->with('imagen')->find($id_playlist);
-    $playlists = \App\Models\playlist::all();
-    $usuario = \Illuminate\Support\Facades\Auth::user();
-    return Inertia::render('SpotifyLikes',  compact('playlist', 'playlists', 'usuario'));
-})->name('SpotifyLikes');
+Route::middleware(['auth:sanctum', 'verified'])->get('/Playlist/{id_playlist}', function ($id_playlist) {
+    $playlist = playlist::with('canciones')->with('imagen')->find($id_playlist);
+    $playlists = playlist::all();
+    $usuario = Auth::user();
+    return Inertia::render('SpotifyPlaylist',  compact('playlist', 'playlists', 'usuario'));
+})->name('Playlist');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/Likes', function () {
+    $playlists = playlist::all();
+    $u = Auth::user();
+    $usuario = User::with('canciones')->find($u->id);
+    return Inertia::render('SpotifyLikes',  compact('playlists', 'usuario'));
+})->name('Likes');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/DarLike/{$id_cancion}', function ($id_cancion) {
+    $like = new likes();
+    $like->id_cancion = $id_cancion;
+    $like->id_user = Auth::user()->id;
+    $like->save();
+})->name('DarLike');

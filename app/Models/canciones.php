@@ -12,6 +12,6 @@ class canciones extends Model
     protected $primaryKey = 'id_cancion';
 
     function imagen(){
-        return $this->hasOne(imagenes::class, 'id_imagen');
+        return $this->hasOne(imagenes::class, 'id_imagen', 'id_imagen');
     }
 }

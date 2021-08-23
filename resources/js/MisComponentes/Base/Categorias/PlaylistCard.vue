@@ -1,5 +1,5 @@
 <template>
-    <Link :href="route('SpotifyLikes', {id_playlist: playlist.id_playlist})">
+    <Link :href="route('Playlist', {id_playlist: playlist.id_playlist})">
         <div class="p-4 w-60 relative">
             <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
                 <div class="rounded-full h-11 w-11 flex items-center justify-center" style="background-color: #1db954; margin-bottom: 15px">

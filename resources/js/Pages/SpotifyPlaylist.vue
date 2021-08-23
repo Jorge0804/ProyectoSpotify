@@ -11,19 +11,19 @@
                 <Header :usuario="usuario"/>
                 <!-- Canciones -->
                 <div class="px-6 py-3 h-full">
-                    <!-- Info -->
+                    <!-- Info. -->
                     <InfoPlaylist>
                         <template v-slot:imagen>
-                            <img src="../../Images/favoritas.png">
+                            <img :src="'/images'+playlist.imagen.ruta+'/'+playlist.imagen.nombre+'.'+playlist.imagen.extension">
                         </template>
                         <template v-slot:nombre>
-                            Tus me gusta
+                            {{playlist.nombre}}
                         </template>
                         <template v-slot:descripcion>
-                            Lista de reproducción de las canciones que te gustan
+                            {{playlist.descripcion}}
                         </template>
                         <template v-slot:cantidad>
-                            {{usuario.canciones.length}} canciones
+                            {{playlist.canciones.length}} canciones
                         </template>
                     </InfoPlaylist>
                     <DivisionSpotify style="margin-top: 30px; margin-bottom: 15px; color: gray"/>
@@ -34,7 +34,7 @@
                         <TableHeader/>
                         <DivisionSpotify/>
                         <!-- Table Body -->
-                        <CancionSpotify v-for="cancion in usuario.canciones" :cancion="cancion"/>
+                        <CancionSpotify @click="PlayMusic" v-for="cancion in playlist.canciones" :cancion="cancion"/>
                     </div>
                 </div>
             </div>
@@ -55,9 +55,16 @@ import InfoPlaylist from '../MisComponentes/Base/Playlist/Info';
 import Tools from "../MisComponentes/Base/Playlist/Tools";
 import TableHeader from '../MisComponentes/Base/Playlist/TableHeader';
 import CancionSpotify from '../MisComponentes/Base/Playlist/TableBody';
-import {Link} from '@inertiajs/inertia-vue3';
+
+var cancion = new Audio('/Musica/NothingOnYou.mp3');
 
 export default {
+    data() {
+        return {
+            enReproduccion: {status: false, cancion: null},
+            global: 'spoti'
+        }
+    },
     props:[
         'playlist',
         'playlists',
@@ -71,8 +78,18 @@ export default {
         DivisionSpotify,
         InfoPlaylist,
         TableHeader,
-        CancionSpotify,
-        Link
+        CancionSpotify
+    },
+    methods: {
+        PlayMusic: function(){
+            if (this.enReproduccion.status == false){
+                cancion.play();
+                this.enReproduccion.status = true;
+            } else{
+                cancion.pause();
+                this.enReproduccion.status = false;
+            }
+        }
     }
 }
 </script>

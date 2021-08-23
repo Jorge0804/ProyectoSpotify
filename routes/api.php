@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Ruta de me gustas para cada usuario
 Route::get('/users', function(){
-    return \App\Models\User::find(2)->with('canciones')->get();
+    return \App\Models\User::with('canciones')->find(2);
 });
 
 Route::get('/canciones', function(){
@@ -32,5 +32,9 @@ Route::get('/playlist', function(){
 });
 
 Route::get('/categorias', function(){
+    return \App\Models\categorias::with('playlists')->get();
+});
+
+Route::get('/likes', function(){
     return \App\Models\categorias::with('playlists')->get();
 });
