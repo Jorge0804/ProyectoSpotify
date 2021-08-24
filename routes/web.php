@@ -37,6 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
     $categorias = categorias::with('playlists')->get();
     $canLogin = Route::has('login');
     $canRegister = Route::has('register');
+
     return Inertia::render('Spotify',compact('playlists', 'usuario', 'categorias', 'canLogin', 'canRegister'));
 })->name('Spotify');
 
@@ -65,9 +66,25 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/Likes', function () {
     return Inertia::render('SpotifyLikes',  compact('playlists', 'usuario'));
 })->name('Likes');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/DarLike/{$id_cancion}', function ($id_cancion) {
-    $like = new likes();
-    $like->id_cancion = $id_cancion;
-    $like->id_user = Auth::user()->id;
-    $like->save();
+Route::middleware(['auth:sanctum', 'verified'])->get('/DarLike/{id_cancion}', function ($id_cancion) {
+    $guardar = likes::where('id_user', Auth::user()->id)->where('id_cancion',$id_cancion)->get();
+
+    if($guardar->count() > 0){
+        $like = likes::find($guardar[0]->id_like);
+        $like->delete();
+        return 'Esta canción ya no te gusta :C';
+    } else{
+        $like = new likes();
+        $like->id_cancion = $id_cancion;
+        $like->id_user = Auth::user()->id;
+        $like->save();
+        return 'Esta cancion te gusta';
+    }
+
 })->name('DarLike');
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/user', function () {
+    $usuario = likes::where('id_user', Auth::user()->id)->where('id_cancion', 3)->get();
+    return $usuario;
+})->name('grid');

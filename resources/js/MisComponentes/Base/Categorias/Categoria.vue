@@ -1,7 +1,7 @@
 <template>
     <div class="flex items-center justify-between">
         <h1 class="pl-2 text-2xl font-semibold text-white tracking-wider hover:underline truncate">
-            {{categoria.titulo}} <slot name="usuario"></slot>
+            {{categoria.titulo}} <slot name="usuario"></slot> Desde servidor 2
         </h1>
         <h2 class="pr-8 pt-4 mb-3 text-xs font-semibold text-lightest uppercase tracking-wider hover:underline" style="color: white">Ver más</h2>
     </div>

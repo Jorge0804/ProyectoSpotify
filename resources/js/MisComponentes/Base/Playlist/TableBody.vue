@@ -15,7 +15,9 @@
             </div>
             <p style="font-size: 15px">{{ cancion.album }}</p>
             <div class="flex" style="flex-direction: row">
-                <i class="material-icons text-green mx-4">favorite</i>
+                <Link :href="route('DarLike', {id_cancion: cancion.id_cancion})">
+                    <i class="material-icons text-green mx-4">favorite</i>
+                </Link>
                 <p style="font-size: 15px">2:40</p>
             </div>
         </div>
@@ -23,7 +25,12 @@
 </template>
 
 <script>
+    import {Link} from '@inertiajs/inertia-vue3';
+
     export default {
+        components:{
+          Link
+        },
         props:[
             'cancion'
         ]

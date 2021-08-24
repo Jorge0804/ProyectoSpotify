@@ -10,6 +10,7 @@ class likes extends Model
     use HasFactory;
 
     protected $primaryKey = 'id_like';
+    public $timestamps = false;
 
     function canciones(){
         return $this->belongsToMany(canciones::class);

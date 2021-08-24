@@ -47,6 +47,7 @@
                     {id: 'buscar', nombre: 'Buscar', icono: 'search'},
                     {id: 'biblioteca', nombre: 'Tu Biblioteca', icono: 'bar_chart'},
                     {id: 'agregar', nombre: 'Crear lista', icono: 'add_box'}
+
                 ]
             }
         }

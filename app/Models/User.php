@@ -62,6 +62,6 @@ class User extends Authenticatable
     ];
 
     function canciones(){
-        return $this->belongsToMany(canciones::class, 'likes', 'id_cancion', 'id_user')->with('imagen');
+        return $this->belongsToMany(canciones::class, 'likes', 'id_user', 'id_cancion')->with('imagen');
     }
 }
